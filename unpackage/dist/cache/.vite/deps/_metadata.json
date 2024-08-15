@@ -1,0 +1,25 @@
+{
+  "hash": "bf37d500",
+  "configHash": "8cde6511",
+  "lockfileHash": "4aa89f9a",
+  "browserHash": "645eff24",
+  "optimized": {
+    "@wangeditor/editor-for-vue": {
+      "src": "../../../../../node_modules/@wangeditor/editor-for-vue/dist/index.esm.js",
+      "file": "@wangeditor_editor-for-vue.js",
+      "fileHash": "c54bda1f",
+      "needsInterop": false
+    },
+    "@wangeditor/editor": {
+      "src": "../../../../../node_modules/@wangeditor/editor/dist/index.esm.js",
+      "file": "@wangeditor_editor.js",
+      "fileHash": "b29b2723",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-T7S5ULVR": {
+      "file": "chunk-T7S5ULVR.js"
+    }
+  }
+}
