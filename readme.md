@@ -6,3 +6,19 @@
 
 
 # 3、问题解决
+
+# 4、参考UI库
+
+https://www.uviewui.com/components/transition.html
+https://github.com/umicro/uView2.0
+
+https://github.com/dingyong0214/ThorUI-uniapp
+
+
+https://doc.firstui.cn/docs/form/radio.html
+
+https://github.com/weilanwl/coloruicss
+https://www.color-ui.com/
+
+
+https://github.com/weilanwl/ColorTicons
