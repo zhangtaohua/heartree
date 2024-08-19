@@ -1,4 +1,4 @@
-function clamp(value, min, max) {
+export default function clamp(value, min, max) {
   return min < max
     ? value < min
       ? min
@@ -11,5 +11,3 @@ function clamp(value, min, max) {
     ? min
     : value;
 }
-
-module.exports = clamp;

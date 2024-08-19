@@ -200,6 +200,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    value: {
+      type: Object,
+      default() {
+        return {
+          hex: "#7ED321",
+        };
+      },
+    },
   },
   components: {
     saturation,

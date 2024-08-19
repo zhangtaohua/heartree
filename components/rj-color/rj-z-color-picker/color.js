@@ -1,8 +1,9 @@
-import tinycolor from "./tinycolor2.js";
+import tinycolor from "./tinycolor.js";
 
 function _colorChange(data, oldHue) {
   var alpha = data && data.a;
   var color;
+  console.log("_colorChange", data, oldHue);
 
   if (data && data.hsl) {
     color = tinycolor(data.hsl);

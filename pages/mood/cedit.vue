@@ -1,6 +1,6 @@
 <template>
   <view class="col_nw_fs_center ce_one_box_one">
-    <TopNavBack :isBlueMode="true"></TopNavBack>
+    <RjTopNavBack :isBlueMode="true"></RjTopNavBack>
     <view class="top_hgap"></view>
     <scroll-view
       class="ce_one_box_two"
@@ -17,6 +17,11 @@
           </view>
         </view>
       </view>
+
+      <view class="ce_one_box_four">
+        <!-- <RjZColorPicker v-model:value="states.colors"></RjZColorPicker> -->
+        <zebra-color-picker v-model="states.colors"></zebra-color-picker>
+      </view>
     </scroll-view>
   </view>
 </template>
@@ -31,13 +36,14 @@ import {
   onMounted,
   getCurrentInstance,
 } from "vue";
-import TopNavBack from "@/components/common/TopNavBack.vue";
-import "@wangeditor/editor/dist/css/style.css"; // 引入 css
-import { createEditor, DomEditor, createToolbar, i18nChangeLanguage } from "@wangeditor/editor";
+
+import RjTopNavBack from "@/components/rj-navback/RjTopNavBack.vue";
+import RjZColorPicker from "@/components/rj-color/rj-z-color-picker/rj-z-color-picker.vue";
+import RjColorPicker from "@/components/rj-color/RjColorPicker.vue";
 
 export default defineComponent({
-  name: "Login",
-  components: { TopNavBack },
+  name: "Cedit",
+  components: { RjTopNavBack, RjZColorPicker, RjColorPicker, ZebraColorPicker },
   setup() {
     let currentPage = 0;
     function scrollHandle() {
@@ -48,8 +54,14 @@ export default defineComponent({
     let inputFeatureToolbar = null;
     let inputRichCtx = "";
 
+    let states = reactive({
+      colors: {
+        hex: "#7ED321",
+      },
+    });
+
     onMounted(() => {
-      initEditor();
+      // initEditor();
     });
 
     // 组件销毁时，也及时销毁编辑器
@@ -66,90 +78,14 @@ export default defineComponent({
       }
     });
 
-    function initEditor() {
-      // #ifdef H5 || APP-PLUS
-      inputFeatureEditor = createEditor({
-        selector: "#editorTextarea",
-        config: {
-          placeholder: "Type here...",
-          autoFocus: false,
-          MENU_CONF: {
-            uploadImage: {
-              fieldName: "your-file-name1",
-              base64LimitSize: 10 * 1024 * 1024, // 10M 以下插入 base64
-            },
-          },
-          onChange(editor) {
-            inputRichCtx = editor.getHtml();
-          },
-        },
-        html: inputRichCtx,
-      });
-      inputFeatureToolbar = createToolbar({
-        editor: inputFeatureEditor,
-        selector: "#editorToolbar",
-        config: {},
-      });
+    // #ifdef MP-WEIXIN || H5 || APP-PLUS
+    const instance = getCurrentInstance();
+    const query = uni.createSelectorQuery().in(instance.proxy);
+    // #endif
 
-      // #endif
-
-      // #ifdef MP-WEIXIN
-      const instance = getCurrentInstance();
-      const query = uni.createSelectorQuery().in(instance.proxy);
-
-      query.select("#editorTextarea").fields(
-        {
-          id: true, //是否返回节点id
-          rect: false, //是否返回节点布局位置
-          dataset: true, //返回数据集
-          size: true, //返回宽高
-          scrollOffset: true, //返回 scrollLeft,scrollTop
-          properties: ["scrollX", "scrollY"], //监听属性名
-          computedStyle: ["margin", "backgroundColor"], //此处返回指定要返回的样式名
-        },
-        (node) => {
-          inputFeatureEditor = createEditor({
-            selector: node,
-            config: {
-              placeholder: "Type here...",
-              autoFocus: false,
-              MENU_CONF: {
-                uploadImage: {
-                  fieldName: "your-file-name1",
-                  base64LimitSize: 10 * 1024 * 1024, // 10M 以下插入 base64
-                },
-              },
-              onChange(editor) {
-                inputRichCtx = editor.getHtml();
-              },
-            },
-            html: inputRichCtx,
-          });
-        }
-      );
-
-      query.select("#editorToolbar").fields(
-        {
-          id: true, //是否返回节点id
-          rect: false, //是否返回节点布局位置
-          dataset: true, //返回数据集
-          size: true, //返回宽高
-          scrollOffset: true, //返回 scrollLeft,scrollTop
-          properties: ["scrollX", "scrollY"], //监听属性名
-          computedStyle: ["margin", "backgroundColor"], //此处返回指定要返回的样式名
-        },
-        (node) => {
-          inputFeatureToolbar = createToolbar({
-            editor: inputFeatureEditor,
-            selector: node,
-            config: {},
-          });
-        }
-      );
-      // #endif
-    }
     return {
       scrollHandle,
+      states,
     };
   },
 });
@@ -179,5 +115,11 @@ $work_occupied_height: 54rpx + 26rpx + 80rpx + 28rpx + 64rpx;
 .ce_one_box_three {
   width: 100%;
   height: auto;
+}
+
+.ce_one_box_four {
+  position: relative;
+  width: 100%;
+  height: 400px;
 }
 </style>
