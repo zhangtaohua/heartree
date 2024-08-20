@@ -2,13 +2,13 @@
   <!-- #ifdef MP-WEIXIN -->
   <view
     :class="[
-      'rj-z-hue',
-      direction === 'horizontal' ? 'rj-z-hue--horizontal' : '',
-      direction === 'vertical' ? 'rj-z-hue--vertical' : '',
+      'rj-hue',
+      direction === 'horizontal' ? 'rj-hue--horizontal' : '',
+      direction === 'vertical' ? 'rj-hue--vertical' : '',
     ]"
   >
     <view
-      class="rj-z-hue-container"
+      class="rj-hue-container"
       @touchmove="hueWxs.touchmove"
       @touchstart="hueWxs.touchstart"
       :prop="direction"
@@ -17,11 +17,11 @@
       :change:propPullDirection="hueWxs.changePropPullDirection"
     >
       <view
-        class="rj-z-hue-pointer"
+        class="rj-hue-pointer"
         :style="{ top: pointerTop, left: pointerLeft }"
         role="presentation"
       >
-        <view class="rj-z-hue-picker"></view>
+        <view class="rj-hue-picker"></view>
       </view>
     </view>
   </view>
@@ -29,23 +29,23 @@
   <!-- #ifndef MP-WEIXIN -->
   <view
     :class="[
-      'rj-z-hue',
-      direction === 'horizontal' ? 'rj-z-hue--horizontal' : '',
-      direction === 'vertical' ? 'rj-z-hue--vertical' : '',
+      'rj-hue',
+      direction === 'horizontal' ? 'rj-hue--horizontal' : '',
+      direction === 'vertical' ? 'rj-hue--vertical' : '',
     ]"
   >
     <view
-      class="rj-z-hue-container"
+      class="rj-hue-container"
       @touchmove.stop="handleChange"
       @touchstart.stop="handleChange"
       @mousedown="handleMouseDown"
     >
       <view
-        class="rj-z-hue-pointer"
+        class="rj-hue-pointer"
         :style="{ top: pointerTop, left: pointerLeft }"
         role="presentation"
       >
-        <view class="rj-z-hue-picker"></view>
+        <view class="rj-hue-picker"></view>
       </view>
     </view>
   </view>
@@ -78,11 +78,11 @@ function touchmove(e, ins) {
 }
 
 function hueMethod(e, ins) {
-	var containerWidth = ins.selectComponent('.rj-z-hue-container').getBoundingClientRect().width
-	var containerHeight = ins.selectComponent('.rj-z-hue-container').getBoundingClientRect().height
+	var containerWidth = ins.selectComponent('.rj-hue-container').getBoundingClientRect().width
+	var containerHeight = ins.selectComponent('.rj-hue-container').getBoundingClientRect().height
 
-	var xOffset = ins.selectComponent('.rj-z-hue-container').getBoundingClientRect().left
-	var yOffset = ins.selectComponent('.rj-z-hue-container').getBoundingClientRect().top
+	var xOffset = ins.selectComponent('.rj-hue-container').getBoundingClientRect().left
+	var yOffset = ins.selectComponent('.rj-hue-container').getBoundingClientRect().top
 	var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
 	var pageY = e.pageY || (e.touches ? e.touches[0].pageY : 0)
 	var left = pageX - xOffset
@@ -107,7 +107,7 @@ function hueMethod(e, ins) {
 			top = -((h * 100) / 360) + 100 + '%'
 		}
 
-		ins.selectComponent('.rj-z-hue-pointer').setStyle({
+		ins.selectComponent('.rj-hue-pointer').setStyle({
 			left: 0,
 			top: top
 		})
@@ -135,7 +135,7 @@ function hueMethod(e, ins) {
 			left = (h * 100) / 360 + '%'
 		}
 
-		ins.selectComponent('.rj-z-hue-pointer').setStyle({
+		ins.selectComponent('.rj-hue-pointer').setStyle({
 			left: left,
 			top: 0
 		})
@@ -185,8 +185,8 @@ export default {
     },
     directionClass() {
       return {
-        "rj-z-hue--horizontal": this.direction === "horizontal",
-        "rj-z-hue--vertical": this.direction === "vertical",
+        "rj-hue--horizontal": this.direction === "horizontal",
+        "rj-hue--vertical": this.direction === "vertical",
       };
     },
     pointerTop() {
@@ -219,7 +219,7 @@ export default {
     handleChange(e, skip) {
       const query = uni.createSelectorQuery().in(this);
       query
-        .select(".rj-z-hue-container")
+        .select(".rj-hue-container")
         .boundingClientRect((data) => {
           if (!data) {
             return;
@@ -296,7 +296,7 @@ export default {
 </script>
 
 <style>
-.rj-z-hue {
+.rj-hue {
   position: absolute;
   top: 0rpx;
   right: 0rpx;
@@ -305,7 +305,7 @@ export default {
   border-radius: 4rpx;
 }
 
-.rj-z-hue--horizontal {
+.rj-hue--horizontal {
   background: linear-gradient(
     to right,
     #f00 0%,
@@ -318,7 +318,7 @@ export default {
   );
 }
 
-.rj-z-hue--vertical {
+.rj-hue--vertical {
   background: linear-gradient(
     to top,
     #f00 0%,
@@ -331,19 +331,19 @@ export default {
   );
 }
 
-.rj-z-hue-container {
+.rj-hue-container {
   cursor: pointer;
   margin: 0 4rpx;
   position: relative;
   height: 100%;
 }
 
-.rj-z-hue-pointer {
+.rj-hue-pointer {
   z-index: 2;
   position: absolute;
 }
 
-.rj-z-hue-picker {
+.rj-hue-picker {
   cursor: pointer;
   margin-top: 2rpx;
   width: 8rpx;

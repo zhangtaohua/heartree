@@ -16,7 +16,11 @@
               <view
                 v-if="toolbarList.includes(item.name)"
                 class="fab-sub"
-                :class="[formats.header === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.header === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="header"
                 :data-value="item.value"
@@ -68,7 +72,11 @@
               <view
                 v-if="toolbarList.includes(item.name)"
                 class="fab-sub"
-                :class="[formats.align === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.align === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="align"
                 :data-value="item.value"
@@ -91,7 +99,11 @@
             <view v-for="item in fabTools.lineHeight" :key="item.value">
               <view
                 class="fab-sub"
-                :class="[formats.lineHeight === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.lineHeight === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="lineHeight"
                 :data-value="item.value"
@@ -119,7 +131,7 @@
                 :class="[
                   formats.letterSpacing === item.value ? 'ql-active' : '',
                   item.icon ? 'iconfont' : '',
-                  item.icon
+                  item.icon,
                 ]"
                 :title="item.title"
                 data-name="letterSpacing"
@@ -145,7 +157,11 @@
             <view v-for="item in fabTools.space" :key="item.value">
               <view
                 class="fab-sub"
-                :class="[formats.marginTop === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.marginTop === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="marginTop"
                 :data-value="item.value"
@@ -173,7 +189,7 @@
                 :class="[
                   formats.marginBottom === item.value ? 'ql-active' : '',
                   item.icon ? 'iconfont' : '',
-                  item.icon
+                  item.icon,
                 ]"
                 :title="item.title"
                 data-name="marginBottom"
@@ -199,7 +215,11 @@
             <view v-for="item in fabTools.fontFamily" :key="item.value">
               <view
                 class="fab-sub"
-                :class="[formats.fontFamily === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.fontFamily === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="fontFamily"
                 :data-value="item.value"
@@ -224,7 +244,11 @@
             <view v-for="item in fabTools.fontSize" :key="item.value">
               <view
                 class="fab-sub"
-                :class="[formats.fontSize === item.value ? 'ql-active' : '', item.icon ? 'iconfont' : '', item.icon]"
+                :class="[
+                  formats.fontSize === item.value ? 'ql-active' : '',
+                  item.icon ? 'iconfont' : '',
+                  item.icon,
+                ]"
                 :title="item.title"
                 data-name="fontSize"
                 :data-value="item.value"
@@ -251,7 +275,12 @@
         data-name="backgroundColor"
         :data-value="backgroundColor"
       ></view>
-      <view v-if="toolbarList.includes('date')" class="iconfont icon-date" title="日期" @tap="insertDate"></view>
+      <view
+        v-if="toolbarList.includes('date')"
+        class="iconfont icon-date"
+        title="日期"
+        @tap="insertDate"
+      ></view>
       <view
         v-if="toolbarList.includes('listCheck')"
         class="iconfont icon--checklist"
@@ -325,35 +354,64 @@
         title="图片"
         @tap="insertImage"
       ></view>
-      <view v-if="toolbarList.includes('video')" class="iconfont icon-video" title="视频" @tap="insertVideo"></view>
+      <view
+        v-if="toolbarList.includes('video')"
+        class="iconfont icon-video"
+        title="视频"
+        @tap="insertVideo"
+      ></view>
       <view
         v-if="toolbarList.includes('link')"
         class="iconfont icon-charulianjie"
         title="超链接"
         @tap="insertLink"
       ></view>
-      <view v-if="toolbarList.includes('undo')" class="iconfont icon-undo" title="撤销" @tap="undo"></view>
-      <view v-if="toolbarList.includes('redo')" class="iconfont icon-redo" title="重做" @tap="redo"></view>
+      <view
+        v-if="toolbarList.includes('undo')"
+        class="iconfont icon-undo"
+        title="撤销"
+        @tap="undo"
+      ></view>
+      <view
+        v-if="toolbarList.includes('redo')"
+        class="iconfont icon-redo"
+        title="重做"
+        @tap="redo"
+      ></view>
       <view
         v-if="toolbarList.includes('removeFormat')"
         class="iconfont icon-clearedformat"
         title="清除格式"
         @tap="removeFormat"
       ></view>
-      <view v-if="toolbarList.includes('clear')" class="iconfont icon-shanchu" title="清空" @tap="clear"></view>
-      <view v-if="toolbarList.includes('export')" class="iconfont icon-baocun" title="导出" @tap="exportHtml"></view>
+      <view
+        v-if="toolbarList.includes('clear')"
+        class="iconfont icon-shanchu"
+        title="清空"
+        @tap="clear"
+      ></view>
+      <view
+        v-if="toolbarList.includes('export')"
+        class="iconfont icon-baocun"
+        title="导出"
+        @tap="exportHtml"
+      ></view>
     </view>
 
     <!-- 自定义功能组件 -->
     <!-- 调色板 -->
-    <color-picker
+    <RjColorPicker
       v-if="toolbarList.includes('color') || toolbarList.includes('backgroundColor')"
       ref="colorPickerRef"
       :color="defaultColor"
       @confirm="confirmColor"
-    ></color-picker>
+    ></RjColorPicker>
     <!-- 添加链接的操作弹窗 -->
-    <link-edit v-if="toolbarList.includes('link') && !readOnly" ref="linkEditRef" @confirm="confirmLink"></link-edit>
+    <link-edit
+      v-if="toolbarList.includes('link') && !readOnly"
+      ref="linkEditRef"
+      @confirm="confirmLink"
+    ></link-edit>
     <view class="sp-editor-wrapper" @longpress="eLongpress">
       <editor
         :id="editorId"
@@ -373,36 +431,36 @@
 </template>
 
 <script>
-import ColorPicker from './color-picker.vue'
-import LinkEdit from './link-edit.vue'
-import FabTool from './fab-tool.vue'
-import { addLink, linkFlag } from '../../utils'
+import RjColorPicker from "@/components/rj-color/RjColorPicker.vue";
+import LinkEdit from "./link-edit.vue";
+import FabTool from "./fab-tool.vue";
+import { addLink, linkFlag } from "./utils";
 
 export default {
   components: {
-    ColorPicker,
+    RjColorPicker,
     LinkEdit,
-    FabTool
+    FabTool,
   },
   props: {
     // 编辑器id可传入，以便循环组件使用，防止id重复
     editorId: {
       type: String,
-      default: 'editor'
+      default: "editor",
     },
     placeholder: {
       type: String,
-      default: '写点什么吧 ~'
+      default: "写点什么吧 ~",
     },
     // 是否只读
     readOnly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 最大字数限制，-1不限
     maxlength: {
       type: Number,
-      default: -1
+      default: -1,
     },
     // 工具栏配置
     toolbarConfig: {
@@ -411,11 +469,11 @@ export default {
         return {
           keys: [], // 要显示的工具，优先级最大
           excludeKeys: [], // 除这些指定的工具外，其他都显示
-          iconSize: '18px', // 工具栏字体大小
-          iconColumns: 10 // 工具栏列数
-        }
-      }
-    }
+          iconSize: "18px", // 工具栏字体大小
+          iconColumns: 10, // 工具栏列数
+        };
+      },
+    },
   },
   watch: {
     toolbarConfig: {
@@ -428,353 +486,353 @@ export default {
          * 若keys与excludeKeys皆为空，则以toolbarAllList为准
          */
         if (newToolbar.keys?.length > 0) {
-          this.toolbarList = newToolbar.keys
+          this.toolbarList = newToolbar.keys;
         } else {
           this.toolbarList =
             newToolbar.excludeKeys?.length > 0
               ? this.toolbarAllList.filter((item) => !newToolbar.excludeKeys.includes(item))
-              : this.toolbarAllList
+              : this.toolbarAllList;
         }
-        this.iconSize = newToolbar.iconSize || '18px'
-        this.iconColumns = newToolbar.iconColumns || 10
-      }
-    }
+        this.iconSize = newToolbar.iconSize || "18px";
+        this.iconColumns = newToolbar.iconColumns || 10;
+      },
+    },
   },
   data() {
     return {
       formats: {},
-      curFab: '', // 当前悬浮工具栏
+      curFab: "", // 当前悬浮工具栏
       fabXY: {},
-      textColor: '',
-      backgroundColor: '',
-      curColor: '',
+      textColor: "",
+      backgroundColor: "",
+      curColor: "",
       defaultColor: { r: 0, g: 0, b: 0, a: 1 }, // 调色板默认颜色
-      iconSize: '20px', // 工具栏图标字体大小
+      iconSize: "20px", // 工具栏图标字体大小
       iconColumns: 10, // 工具栏列数
       toolbarList: [],
       toolbarAllList: [
-        'header', // 标题
-        'H1', // 一级标题
-        'H2', // 二级标题
-        'H3', // 三级标题
-        'H4', // 四级标题
-        'H5', // 五级标题
-        'H6', // 六级标题
-        'bold', // 加粗
-        'italic', // 斜体
-        'underline', // 下划线
-        'strike', // 删除线
-        'align', // 对齐方式
-        'alignLeft', // 左对齐
-        'alignCenter', // 居中对齐
-        'alignRight', // 右对齐
-        'alignJustify', // 两端对齐
-        'lineHeight', // 行间距
-        'letterSpacing', // 字间距
-        'marginTop', // 段前距
-        'marginBottom', // 段后距
-        'fontFamily', // 字体
-        'fontSize', // 字号
-        'color', // 文字颜色
-        'backgroundColor', // 背景颜色
-        'date', // 日期
-        'listCheck', // 待办
-        'listOrdered', // 有序列表
-        'listBullet', // 无序列表
-        'indentInc', // 增加缩进
-        'indentDec', // 减少缩进
-        'divider', // 分割线
-        'scriptSub', // 下标
-        'scriptSuper', // 上标
-        'direction', // 文本方向
-        'image', // 图片
-        'video', // 视频
-        'link', // 超链接
-        'undo', // 撤销
-        'redo', // 重做
-        'removeFormat', // 清除格式
-        'clear', // 清空
-        'export' // 导出
+        "header", // 标题
+        "H1", // 一级标题
+        "H2", // 二级标题
+        "H3", // 三级标题
+        "H4", // 四级标题
+        "H5", // 五级标题
+        "H6", // 六级标题
+        "bold", // 加粗
+        "italic", // 斜体
+        "underline", // 下划线
+        "strike", // 删除线
+        "align", // 对齐方式
+        "alignLeft", // 左对齐
+        "alignCenter", // 居中对齐
+        "alignRight", // 右对齐
+        "alignJustify", // 两端对齐
+        "lineHeight", // 行间距
+        "letterSpacing", // 字间距
+        "marginTop", // 段前距
+        "marginBottom", // 段后距
+        "fontFamily", // 字体
+        "fontSize", // 字号
+        "color", // 文字颜色
+        "backgroundColor", // 背景颜色
+        "date", // 日期
+        "listCheck", // 待办
+        "listOrdered", // 有序列表
+        "listBullet", // 无序列表
+        "indentInc", // 增加缩进
+        "indentDec", // 减少缩进
+        "divider", // 分割线
+        "scriptSub", // 下标
+        "scriptSuper", // 上标
+        "direction", // 文本方向
+        "image", // 图片
+        "video", // 视频
+        "link", // 超链接
+        "undo", // 撤销
+        "redo", // 重做
+        "removeFormat", // 清除格式
+        "clear", // 清空
+        "export", // 导出
       ],
       fabTools: {
         header: [
-          { title: '一级标题', name: 'H1', value: 1, icon: 'icon-format-header-1' },
-          { title: '二级标题', name: 'H2', value: 2, icon: 'icon-format-header-2' },
-          { title: '三级标题', name: 'H3', value: 3, icon: 'icon-format-header-3' },
-          { title: '四级标题', name: 'H4', value: 4, icon: 'icon-format-header-4' },
-          { title: '五级标题', name: 'H5', value: 5, icon: 'icon-format-header-5' },
-          { title: '六级标题', name: 'H6', value: 6, icon: 'icon-format-header-6' }
+          { title: "一级标题", name: "H1", value: 1, icon: "icon-format-header-1" },
+          { title: "二级标题", name: "H2", value: 2, icon: "icon-format-header-2" },
+          { title: "三级标题", name: "H3", value: 3, icon: "icon-format-header-3" },
+          { title: "四级标题", name: "H4", value: 4, icon: "icon-format-header-4" },
+          { title: "五级标题", name: "H5", value: 5, icon: "icon-format-header-5" },
+          { title: "六级标题", name: "H6", value: 6, icon: "icon-format-header-6" },
         ],
         fontFamily: [
-          { title: '宋体', name: '宋', value: '宋体', icon: '' },
-          { title: '黑体', name: '黑', value: '黑体', icon: '' },
-          { title: '楷体', name: '楷', value: '楷体', icon: '' },
-          { title: '仿宋', name: '仿', value: '仿宋', icon: '' },
-          { title: '华文隶书', name: '隶', value: 'STLiti', icon: '' },
-          { title: '华文行楷', name: '行', value: 'STXingkai', icon: '' },
-          { title: '幼圆', name: '圆', value: 'YouYuan', icon: '' }
+          { title: "宋体", name: "宋", value: "宋体", icon: "" },
+          { title: "黑体", name: "黑", value: "黑体", icon: "" },
+          { title: "楷体", name: "楷", value: "楷体", icon: "" },
+          { title: "仿宋", name: "仿", value: "仿宋", icon: "" },
+          { title: "华文隶书", name: "隶", value: "STLiti", icon: "" },
+          { title: "华文行楷", name: "行", value: "STXingkai", icon: "" },
+          { title: "幼圆", name: "圆", value: "YouYuan", icon: "" },
         ],
         fontSize: [
-          { title: '12', name: '12', value: '12px', icon: '' },
-          { title: '14', name: '14', value: '14px', icon: '' },
-          { title: '16', name: '16', value: '16px', icon: '' },
-          { title: '18', name: '18', value: '18px', icon: '' },
-          { title: '20', name: '20', value: '20px', icon: '' },
-          { title: '22', name: '22', value: '22px', icon: '' },
-          { title: '24', name: '24', value: '24px', icon: '' }
+          { title: "12", name: "12", value: "12px", icon: "" },
+          { title: "14", name: "14", value: "14px", icon: "" },
+          { title: "16", name: "16", value: "16px", icon: "" },
+          { title: "18", name: "18", value: "18px", icon: "" },
+          { title: "20", name: "20", value: "20px", icon: "" },
+          { title: "22", name: "22", value: "22px", icon: "" },
+          { title: "24", name: "24", value: "24px", icon: "" },
         ],
         align: [
-          { title: '左对齐', name: 'alignLeft', value: 'left', icon: 'icon-zuoduiqi' },
-          { title: '居中对齐', name: 'alignCenter', value: 'center', icon: 'icon-juzhongduiqi' },
-          { title: '右对齐', name: 'alignRight', value: 'right', icon: 'icon-youduiqi' },
-          { title: '两端对齐', name: 'alignJustify', value: 'justify', icon: 'icon-zuoyouduiqi' }
+          { title: "左对齐", name: "alignLeft", value: "left", icon: "icon-zuoduiqi" },
+          { title: "居中对齐", name: "alignCenter", value: "center", icon: "icon-juzhongduiqi" },
+          { title: "右对齐", name: "alignRight", value: "right", icon: "icon-youduiqi" },
+          { title: "两端对齐", name: "alignJustify", value: "justify", icon: "icon-zuoyouduiqi" },
         ],
         lineHeight: [
-          { title: '1倍', name: '1', value: '1', icon: '' },
-          { title: '1.5倍', name: '1.5', value: '1.5', icon: '' },
-          { title: '2倍', name: '2', value: '2', icon: '' },
-          { title: '2.5倍', name: '2.5', value: '2.5', icon: '' },
-          { title: '3倍', name: '3', value: '3', icon: '' }
+          { title: "1倍", name: "1", value: "1", icon: "" },
+          { title: "1.5倍", name: "1.5", value: "1.5", icon: "" },
+          { title: "2倍", name: "2", value: "2", icon: "" },
+          { title: "2.5倍", name: "2.5", value: "2.5", icon: "" },
+          { title: "3倍", name: "3", value: "3", icon: "" },
         ],
         // 字间距/段前距/段后距
         space: [
-          { title: '0.5倍', name: '0.5', value: '0.5em', icon: '' },
-          { title: '1倍', name: '1', value: '1em', icon: '' },
-          { title: '1.5倍', name: '1.5', value: '1.5em', icon: '' },
-          { title: '2倍', name: '2', value: '2em', icon: '' },
-          { title: '2.5倍', name: '2.5', value: '2.5em', icon: '' },
-          { title: '3倍', name: '3', value: '3em', icon: '' }
-        ]
-      }
-    }
+          { title: "0.5倍", name: "0.5", value: "0.5em", icon: "" },
+          { title: "1倍", name: "1", value: "1em", icon: "" },
+          { title: "1.5倍", name: "1.5", value: "1.5em", icon: "" },
+          { title: "2倍", name: "2", value: "2em", icon: "" },
+          { title: "2.5倍", name: "2.5", value: "2.5em", icon: "" },
+          { title: "3倍", name: "3", value: "3em", icon: "" },
+        ],
+      },
+    };
   },
   methods: {
     onEditorReady() {
       uni
         .createSelectorQuery()
         .in(this)
-        .select('#' + this.editorId)
+        .select("#" + this.editorId)
         .context((res) => {
-          this.editorCtx = res.context
-          this.$emit('init', this.editorCtx, this.editorId)
+          this.editorCtx = res.context;
+          this.$emit("init", this.editorCtx, this.editorId);
         })
-        .exec()
+        .exec();
     },
     undo() {
-      this.editorCtx.undo()
+      this.editorCtx.undo();
     },
     redo() {
-      this.editorCtx.redo()
+      this.editorCtx.redo();
     },
     format(e) {
-      let { name, value } = e.target.dataset
-      if (!name) return
+      let { name, value } = e.target.dataset;
+      if (!name) return;
       switch (name) {
-        case 'color':
-        case 'backgroundColor':
-          this.curColor = name
-          this.showPicker()
-          break
+        case "color":
+        case "backgroundColor":
+          this.curColor = name;
+          this.showPicker();
+          break;
         default:
-          this.editorCtx.format(name, value)
-          break
+          this.editorCtx.format(name, value);
+          break;
       }
     },
     // 悬浮工具点击
     fabTap(fabType) {
       if (this.curFab != fabType) {
-        this.curFab = fabType
+        this.curFab = fabType;
       } else {
-        this.curFab = ''
+        this.curFab = "";
       }
     },
     // 悬浮工具子集点击
     fabTapSub(e, fabType) {
-      this.format(e)
-      this.fabTap(fabType)
+      this.format(e);
+      this.fabTap(fabType);
     },
     showPicker() {
       switch (this.curColor) {
-        case 'color':
+        case "color":
           this.defaultColor = this.textColor
             ? this.$refs.colorPickerRef.hex2Rgb(this.textColor)
-            : { r: 0, g: 0, b: 0, a: 1 }
-          break
-        case 'backgroundColor':
+            : { r: 0, g: 0, b: 0, a: 1 };
+          break;
+        case "backgroundColor":
           this.defaultColor = this.backgroundColor
             ? this.$refs.colorPickerRef.hex2Rgb(this.backgroundColor)
-            : { r: 0, g: 0, b: 0, a: 0 }
-          break
+            : { r: 0, g: 0, b: 0, a: 0 };
+          break;
       }
-      this.$refs.colorPickerRef.open()
+      this.$refs.colorPickerRef.open();
     },
     confirmColor(e) {
       switch (this.curColor) {
-        case 'color':
-          this.textColor = e.hex
-          this.editorCtx.format('color', this.textColor)
-          break
-        case 'backgroundColor':
-          this.backgroundColor = e.hex
-          this.editorCtx.format('backgroundColor', this.backgroundColor)
-          break
+        case "color":
+          this.textColor = e.hex;
+          this.editorCtx.format("color", this.textColor);
+          break;
+        case "backgroundColor":
+          this.backgroundColor = e.hex;
+          this.editorCtx.format("backgroundColor", this.backgroundColor);
+          break;
       }
     },
     onStatusChange(e) {
       if (e.detail.color) {
-        this.textColor = e.detail.color
+        this.textColor = e.detail.color;
       }
       if (e.detail.backgroundColor) {
-        this.backgroundColor = e.detail.backgroundColor
+        this.backgroundColor = e.detail.backgroundColor;
       }
-      this.formats = e.detail
+      this.formats = e.detail;
     },
     insertDivider() {
-      this.editorCtx.insertDivider()
+      this.editorCtx.insertDivider();
     },
     clear() {
       uni.showModal({
-        title: '清空编辑器',
-        content: '确定清空编辑器吗？',
+        title: "清空编辑器",
+        content: "确定清空编辑器吗？",
         success: ({ confirm }) => {
           if (confirm) {
-            this.editorCtx.clear()
+            this.editorCtx.clear();
           }
-        }
-      })
+        },
+      });
     },
     removeFormat() {
       uni.showModal({
-        title: '文本格式化',
-        content: '确定要清除所选择部分文本块格式吗？',
+        title: "文本格式化",
+        content: "确定要清除所选择部分文本块格式吗？",
         showCancel: true,
         success: ({ confirm }) => {
           if (confirm) {
-            this.editorCtx.removeFormat()
+            this.editorCtx.removeFormat();
           }
-        }
-      })
+        },
+      });
     },
     insertDate() {
-      const date = new Date()
-      const formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
-      this.editorCtx.insertText({ text: formatDate })
+      const date = new Date();
+      const formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+      this.editorCtx.insertText({ text: formatDate });
     },
     insertLink() {
-      this.$refs.linkEditRef.open()
+      this.$refs.linkEditRef.open();
     },
     /**
      * 确认添加链接
      * @param {Object} e { text: '链接描述', href: '链接地址' }
      */
     confirmLink(e) {
-      this.$refs.linkEditRef.close()
-      addLink(this.editorCtx, e)
-      this.$emit('addLink', e, this.editorId)
+      this.$refs.linkEditRef.close();
+      addLink(this.editorCtx, e);
+      this.$emit("addLink", e, this.editorId);
       // 修复添加超链接后，不触发input更新当前最新内容的bug，这里做一下手动更新
       this.editorCtx.getContents({
         success: (res) => {
-          this.$emit('input', { html: res.html, text: res.text }, this.editorId)
-        }
-      })
+          this.$emit("input", { html: res.html, text: res.text }, this.editorId);
+        },
+      });
     },
     insertImage() {
       // #ifdef APP-PLUS || H5
       uni.chooseImage({
         // count: 1, // 默认9
         success: (res) => {
-          const { tempFiles } = res
+          const { tempFiles } = res;
           // 将文件和编辑器示例抛出，由开发者自行上传和插入图片
-          this.$emit('upinImage', tempFiles, this.editorCtx, this.editorId)
+          this.$emit("upinImage", tempFiles, this.editorCtx, this.editorId);
         },
         fail() {
           uni.showToast({
-            title: '未授权访问相册权限，请授权后使用',
-            icon: 'none'
-          })
-        }
-      })
+            title: "未授权访问相册权限，请授权后使用",
+            icon: "none",
+          });
+        },
+      });
       // #endif
 
       // #ifdef MP-WEIXIN
       // 微信小程序从基础库 2.21.0 开始， wx.chooseImage 停止维护，请使用 uni.chooseMedia 代替。
       uni.chooseMedia({
         // count: 1, // 默认9
-        mediaType: ['image'],
+        mediaType: ["image"],
         success: (res) => {
           // 同上chooseImage处理
-          const { tempFiles } = res
-          this.$emit('upinImage', tempFiles, this.editorCtx, this.editorId)
+          const { tempFiles } = res;
+          this.$emit("upinImage", tempFiles, this.editorCtx, this.editorId);
         },
         fail() {
           uni.showToast({
-            title: '未授权访问相册权限，请授权后使用',
-            icon: 'none'
-          })
-        }
-      })
+            title: "未授权访问相册权限，请授权后使用",
+            icon: "none",
+          });
+        },
+      });
       // #endif
     },
     insertVideo() {
       uni.chooseVideo({
-        sourceType: ['camera', 'album'],
+        sourceType: ["camera", "album"],
         success: (res) => {
-          const { tempFilePath } = res
+          const { tempFilePath } = res;
           // 将文件和编辑器示例抛出，由开发者自行上传和插入图片
-          this.$emit('upinVideo', tempFilePath, this.editorCtx, this.editorId)
+          this.$emit("upinVideo", tempFilePath, this.editorCtx, this.editorId);
         },
         fail() {
           uni.showToast({
-            title: '未授权访问媒体权限，请授权后使用',
-            icon: 'none'
-          })
-        }
-      })
+            title: "未授权访问媒体权限，请授权后使用",
+            icon: "none",
+          });
+        },
+      });
     },
     onEditorInput(e) {
       // 注意不要使用getContents获取html和text，会导致重复触发onStatusChange从而失去toolbar工具的高亮状态
       // 复制粘贴的时候detail会为空，此时应当直接return
-      if (Object.keys(e.detail).length <= 0) return
-      const { html, text } = e.detail
+      if (Object.keys(e.detail).length <= 0) return;
+      const { html, text } = e.detail;
       // 识别到标识立即return
-      if (text.indexOf(linkFlag) !== -1) return
+      if (text.indexOf(linkFlag) !== -1) return;
 
-      const maxlength = parseInt(this.maxlength)
-      const textStr = text.replace(/[ \t\r\n]/g, '')
+      const maxlength = parseInt(this.maxlength);
+      const textStr = text.replace(/[ \t\r\n]/g, "");
       if (textStr.length > maxlength && maxlength != -1) {
         uni.showModal({
           content: `超过${maxlength}字数啦~`,
-          confirmText: '确定',
+          confirmText: "确定",
           showCancel: false,
           success: () => {
-            this.$emit('overMax', { html, text }, this.editorId)
-          }
-        })
+            this.$emit("overMax", { html, text }, this.editorId);
+          },
+        });
       } else {
-        this.$emit('input', { html, text }, this.editorId)
+        this.$emit("input", { html, text }, this.editorId);
       }
     },
     // 导出
     exportHtml() {
       this.editorCtx.getContents({
         success: (res) => {
-          this.$emit('exportHtml', res.html, this.editorId)
-        }
-      })
+          this.$emit("exportHtml", res.html, this.editorId);
+        },
+      });
     },
     eLongpress() {
       /**
        * 微信小程序官方editor的长按事件有bug，需要重写覆盖，不需做任何逻辑，可见下面小程序社区问题链接
        * @tutorial https://developers.weixin.qq.com/community/develop/doc/000c04b3e1c1006f660065e4f61000
        */
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-@import '@/uni_modules/sp-editor/icons/editor-icon.css';
-@import '@/uni_modules/sp-editor/icons/custom-icon.css';
+@import "@/components/rj-editor/rj-sp-editor/editor-icon.css";
+@import "@/components/rj-editor/rj-sp-editor/custom-icon.css";
 
 .sp-editor {
   height: 100%;
@@ -787,7 +845,7 @@ export default {
   box-sizing: border-box;
   padding: calc(var(--icon-size) / 4) 0;
   border-bottom: 1px solid #e4e4e4;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   display: grid;
   grid-template-columns: repeat(var(--icon-columns), 1fr);
 }

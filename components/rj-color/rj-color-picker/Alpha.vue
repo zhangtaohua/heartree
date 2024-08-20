@@ -1,29 +1,29 @@
 <template>
-  <view class="rj-z-alpha">
-    <view class="rj-z-alpha-checkboard-wrap">
+  <view class="rj-alpha">
+    <view class="rj-alpha-checkboard-wrap">
       <checkboard></checkboard>
     </view>
-    <view class="rj-z-alpha-gradient" :style="{ background: gradientColor }"></view>
+    <view class="rj-alpha-gradient" :style="{ background: gradientColor }"></view>
     <!-- #ifdef MP-WEIXIN -->
     <view
-      class="rj-z-alpha-container"
+      class="rj-alpha-container"
       @touchmove="alphaWxs.touchmove"
       @touchstart="alphaWxs.touchstart"
     >
-      <view class="rj-z-alpha-pointer" :style="{ left: colors.a * 100 + '%' }">
-        <view class="rj-z-alpha-picker"></view>
+      <view class="rj-alpha-pointer" :style="{ left: colors.a * 100 + '%' }">
+        <view class="rj-alpha-picker"></view>
       </view>
     </view>
     <!-- #endif -->
     <!-- #ifndef MP-WEIXIN -->
     <view
-      class="rj-z-alpha-container"
+      class="rj-alpha-container"
       @touchmove.stop="handleChange"
       @touchstart.stop="handleChange"
       @mousedown="handleMouseDown"
     >
-      <view class="rj-z-alpha-pointer" :style="{ left: colors.a * 100 + '%' }">
-        <view class="rj-z-alpha-picker"></view>
+      <view class="rj-alpha-pointer" :style="{ left: colors.a * 100 + '%' }">
+        <view class="rj-alpha-picker"></view>
       </view>
     </view>
     <!-- #endif -->
@@ -45,8 +45,8 @@ function touchmove(e, ins) {
 }
 
 function alphaMethod(e, ins) {
-	var containerWidth = ins.selectComponent('.rj-z-alpha-container').getBoundingClientRect().width
-	var xOffset = ins.selectComponent('.rj-z-alpha-container').getBoundingClientRect().left
+	var containerWidth = ins.selectComponent('.rj-alpha-container').getBoundingClientRect().width
+	var xOffset = ins.selectComponent('.rj-alpha-container').getBoundingClientRect().left
 	var pageX = e.pageX || (e.touches ? e.touches[0].pageX : 0)
 	var left = pageX - xOffset
 
@@ -58,7 +58,7 @@ function alphaMethod(e, ins) {
 	} else {
 		a = Math.round(left * 100 / containerWidth) / 100
 	}
-	ins.selectComponent('.rj-z-alpha-pointer').setStyle({
+	ins.selectComponent('.rj-alpha-pointer').setStyle({
 		left: a * 100 + '%'
 	})
 	var currentTime = Date.now()
@@ -112,7 +112,7 @@ export default {
     handleChange(e, skip) {
       const query = uni.createSelectorQuery().in(this);
       query
-        .select(".rj-z-alpha-container")
+        .select(".rj-alpha-container")
         .boundingClientRect((data) => {
           if (!data) {
             return;
@@ -161,7 +161,7 @@ export default {
 </script>
 
 <style>
-.rj-z-alpha {
+.rj-alpha {
   position: absolute;
   top: 0rpx;
   right: 0rpx;
@@ -169,7 +169,7 @@ export default {
   left: 0rpx;
 }
 
-.rj-z-alpha-checkboard-wrap {
+.rj-alpha-checkboard-wrap {
   position: absolute;
   top: 0rpx;
   right: 0rpx;
@@ -178,7 +178,7 @@ export default {
   overflow: hidden;
 }
 
-.rj-z-alpha-gradient {
+.rj-alpha-gradient {
   position: absolute;
   top: 0rpx;
   right: 0rpx;
@@ -186,7 +186,7 @@ export default {
   left: 0rpx;
 }
 
-.rj-z-alpha-container {
+.rj-alpha-container {
   cursor: pointer;
   position: relative;
   z-index: 2;
@@ -194,12 +194,12 @@ export default {
   margin: 0 6rpx;
 }
 
-.rj-z-alpha-pointer {
+.rj-alpha-pointer {
   z-index: 2;
   position: absolute;
 }
 
-.rj-z-alpha-picker {
+.rj-alpha-picker {
   cursor: pointer;
   width: 8rpx;
   border-radius: 2rpx;

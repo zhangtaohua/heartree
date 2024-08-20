@@ -14,113 +14,113 @@ export default {
   props: {
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     placement: {
       type: String,
-      default: 'auto' // 'auto' | 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-center' | 'bottom-end'
-    }
+      default: "auto", // 'auto' | 'top-start' | 'top-center' | 'top-end' | 'bottom-start' | 'bottom-center' | 'bottom-end'
+    },
   },
   data() {
     return {
-      placementHeight: '0',
-      placementType: ''
-    }
+      placementHeight: "0",
+      placementType: "",
+    };
   },
   watch: {
     visible(newVal) {
       if (newVal) {
-        const { screenWidth } = uni.getSystemInfoSync()
+        const { screenWidth } = uni.getSystemInfoSync();
 
         this.$nextTick(() => {
-          let placementWidth = 0
+          let placementWidth = 0;
           uni
             .createSelectorQuery()
             .in(this)
-            .select('#placementfab')
+            .select("#placementfab")
             .boundingClientRect((res) => {
-              this.placementHeight = -res.height + 'px'
-              placementWidth = res.width
+              this.placementHeight = -res.height + "px";
+              placementWidth = res.width;
             })
-            .exec()
+            .exec();
           // 开启自动模式后
-          if (this.placement == 'auto') {
+          if (this.placement == "auto") {
             uni
               .createSelectorQuery()
               .in(this)
-              .select('#toolfab')
+              .select("#toolfab")
               .boundingClientRect((res) => {
-                let leftRemain = res.left
-                let rightRemain = screenWidth - leftRemain
+                let leftRemain = res.left;
+                let rightRemain = screenWidth - leftRemain;
                 if (rightRemain > placementWidth) {
-                  this.placementType = 'bottom-start'
+                  this.placementType = "bottom-start";
                 } else if (leftRemain > placementWidth) {
-                  this.placementType = 'bottom-end'
+                  this.placementType = "bottom-end";
                 } else {
-                  this.placementType = 'bottom-center'
+                  this.placementType = "bottom-center";
                 }
               })
-              .exec()
+              .exec();
           }
-        })
+        });
       }
-    }
+    },
   },
   mounted() {
-    this.placementType = this.placement
+    this.placementType = this.placement;
   },
   computed: {
     placementStyle() {
-      let position = {}
+      let position = {};
       switch (this.placementType) {
-        case 'top-start':
+        case "top-start":
           position = {
             top: this.placementHeight,
-            left: 0
-          }
-          break
-        case 'top-center':
+            left: 0,
+          };
+          break;
+        case "top-center":
           position = {
             top: this.placementHeight,
-            left: '50%',
-            transform: 'translateX(-50%)'
-          }
-          break
-        case 'top-end':
+            left: "50%",
+            transform: "translateX(-50%)",
+          };
+          break;
+        case "top-end":
           position = {
             top: this.placementHeight,
-            right: 0
-          }
-          break
-        case 'bottom-start':
+            right: 0,
+          };
+          break;
+        case "bottom-start":
           position = {
             bottom: this.placementHeight,
-            left: 0
-          }
-          break
-        case 'bottom-center':
+            left: 0,
+          };
+          break;
+        case "bottom-center":
           position = {
             bottom: this.placementHeight,
-            left: '50%',
-            transform: 'translateX(-50%)'
-          }
-          break
-        case 'bottom-end':
+            left: "50%",
+            transform: "translateX(-50%)",
+          };
+          break;
+        case "bottom-end":
           position = {
             bottom: this.placementHeight,
-            right: 0
-          }
-          break
+            right: 0,
+          };
+          break;
         default:
-          break
+          break;
       }
-      return position
-    }
+      return position;
+    },
   },
   methods: {
     //
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

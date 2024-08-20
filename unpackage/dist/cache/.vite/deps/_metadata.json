@@ -1,8 +1,15 @@
 {
-  "hash": "5743c8f9",
+  "hash": "9a23fdd0",
   "configHash": "8cde6511",
-  "lockfileHash": "440b825f",
-  "browserHash": "8a73b438",
-  "optimized": {},
+  "lockfileHash": "5fabc12a",
+  "browserHash": "802ec210",
+  "optimized": {
+    "quill": {
+      "src": "../../../../../node_modules/quill/quill.js",
+      "file": "quill.js",
+      "fileHash": "b0d4b389",
+      "needsInterop": false
+    }
+  },
   "chunks": {}
 }

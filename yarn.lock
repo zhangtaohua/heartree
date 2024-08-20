@@ -170,6 +170,11 @@ magic-string@^0.30.10:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.5.0"
 
+mp-html@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.npmmirror.com/mp-html/-/mp-html-2.5.0.tgz#8bcb8c1d84ca8689587b4b7f2cf1d3a9730f8ba4"
+  integrity sha512-uvBH5tIaDIlj8qaxsvNXU3RKX0jvXOo3J6FAi/notUv/ds6j79UUTE82aDkxxUk0eLUU0CiCqMrR7WWnytk30Q==
+
 nanoid@^3.3.7:
   version "3.3.7"
   resolved "https://registry.npmmirror.com/nanoid/-/nanoid-3.3.7.tgz#d0c301a691bc8d54efa0a2226ccf3fe2fd656bd8"

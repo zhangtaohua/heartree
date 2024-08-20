@@ -1,5 +1,5 @@
 <template>
-  <view class="rj-z-checkerboard" :style="[bgStyle]"></view>
+  <view class="rj-checkerboard" :style="[bgStyle]"></view>
 </template>
 
 <script>
@@ -55,7 +55,7 @@ function getCheckboard(c1, c2, size) {
 </script>
 
 <style>
-.rj-z-checkerboard {
+.rj-checkerboard {
   position: absolute;
   top: 0rpx;
   right: 0rpx;

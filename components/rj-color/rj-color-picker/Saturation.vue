@@ -1,58 +1,58 @@
 <template>
   <!-- #ifdef MP-WEIXIN -->
   <view
-    class="rj-z-saturation"
+    class="rj-saturation"
     :style="{ background: bgColor }"
     @touchmove="saturationWxs.touchmove"
     @touchstart="saturationWxs.touchstart"
   >
-    <view class="rj-z-saturation--white"></view>
-    <view class="rj-z-saturation--black"></view>
-    <view class="rj-z-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
-      <view class="rj-z-saturation-circle"></view>
+    <view class="rj-saturation--white"></view>
+    <view class="rj-saturation--black"></view>
+    <view class="rj-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
+      <view class="rj-saturation-circle"></view>
     </view>
   </view>
   <!-- #endif -->
   <!-- #ifdef MP-ALIPAY -->
   <view
-    class="rj-z-saturation"
+    class="rj-saturation"
     :style="{ background: bgColor }"
     @touchmove="saturationSjs.touchmove"
     @touchstart="saturationSjs.touchstart"
   >
-    <view class="rj-z-saturation--white"></view>
-    <view class="rj-z-saturation--black"></view>
-    <view class="rj-z-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
-      <view class="rj-z-saturation-circle"></view>
+    <view class="rj-saturation--white"></view>
+    <view class="rj-saturation--black"></view>
+    <view class="rj-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
+      <view class="rj-saturation-circle"></view>
     </view>
   </view>
   <!-- #endif -->
   <!-- #ifdef MP-TOUTIAO || MP-BAIDU || APP-VUE || MP-QQ || MP-KUAISHOU || MP-LARK || MP-JD || MP-360 || QUICKAPP-WEBVIEW || QUICKAPP-WEBVIEW-UNION || QUICKAPP-WEBVIEW-HUAWEI -->
   <view
-    class="rj-z-saturation"
+    class="rj-saturation"
     :style="{ background: bgColor }"
     @touchmove.stop.prevent="handleChange"
     @touchstart="handleChange"
   >
-    <view class="rj-z-saturation--white"></view>
-    <view class="rj-z-saturation--black"></view>
-    <view class="rj-z-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
-      <view class="rj-z-saturation-circle"></view>
+    <view class="rj-saturation--white"></view>
+    <view class="rj-saturation--black"></view>
+    <view class="rj-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
+      <view class="rj-saturation-circle"></view>
     </view>
   </view>
   <!-- #endif -->
   <!-- #ifdef H5 -->
   <view
-    class="rj-z-saturation"
+    class="rj-saturation"
     :style="{ background: bgColor }"
     @touchmove.stop.prevent="handleChange"
     @touchstart="handleChange"
     @mousedown="handleMouseDown"
   >
-    <view class="rj-z-saturation--white"></view>
-    <view class="rj-z-saturation--black"></view>
-    <view class="rj-z-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
-      <view class="rj-z-saturation-circle"></view>
+    <view class="rj-saturation--white"></view>
+    <view class="rj-saturation--black"></view>
+    <view class="rj-saturation-pointer" :style="{ top: pointerTop, left: pointerLeft }">
+      <view class="rj-saturation-circle"></view>
     </view>
   </view>
   <!-- #endif -->
@@ -95,7 +95,7 @@ export default {
     handleChange(e, skip) {
       const query = uni.createSelectorQuery().in(this);
       query
-        .select(".rj-z-saturation")
+        .select(".rj-saturation")
         .boundingClientRect((data) => {
           if (!data) {
             return;
@@ -124,7 +124,7 @@ export default {
     handleChangeMouse(e, skip) {
       const query = uni.createSelectorQuery().in(this);
       query
-        .select(".rj-z-saturation")
+        .select(".rj-saturation")
         .boundingClientRect((data) => {
           if (!data) {
             return;
@@ -183,9 +183,9 @@ export default {
 </script>
 
 <style>
-.rj-z-saturation,
-.rj-z-saturation--white,
-.rj-z-saturation--black {
+.rj-saturation,
+.rj-saturation--white,
+.rj-saturation--black {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -196,20 +196,20 @@ export default {
   width: 100%;
 }
 
-.rj-z-saturation--white {
+.rj-saturation--white {
   background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
 }
 
-.rj-z-saturation--black {
+.rj-saturation--black {
   background: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
 }
 
-.rj-z-saturation-pointer {
+.rj-saturation-pointer {
   cursor: pointer;
   position: absolute;
 }
 
-.rj-z-saturation-circle {
+.rj-saturation-circle {
   cursor: head;
   width: 8rpx;
   height: 8rpx;

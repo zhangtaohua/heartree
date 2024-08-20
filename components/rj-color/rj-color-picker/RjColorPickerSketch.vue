@@ -2,32 +2,36 @@
   <div
     role="application"
     aria-label="Sketch color picker"
-    :class="['rj-z-sketch', disableAlpha ? 'rj-z-sketch__disable-alpha' : '']"
+    :class="['rj-sketch', disableAlpha ? 'rj-sketch__disable-alpha' : '']"
   >
-    <div class="rj-z-sketch-saturation-wrap">
-      <saturation v-model="colors" :navbarHeight="navbarHeight" @change="childChange"></saturation>
+    <div class="rj-sketch-saturation-wrap">
+      <saturation
+        v-model:value="colors"
+        :navbarHeight="navbarHeight"
+        @change="childChange"
+      ></saturation>
     </div>
-    <div class="rj-z-sketch-controls">
-      <div class="rj-z-sketch-sliders">
-        <div class="rj-z-sketch-hue-wrap">
-          <hue v-model="colors" @change="childChange"></hue>
+    <div class="rj-sketch-controls">
+      <div class="rj-sketch-sliders">
+        <div class="rj-sketch-hue-wrap">
+          <hue v-model:value="colors" @change="childChange"></hue>
         </div>
-        <div class="rj-z-sketch-alpha-wrap" v-if="!disableAlpha">
-          <alpha v-model="colors" @change="childChange"></alpha>
+        <div class="rj-sketch-alpha-wrap" v-if="!disableAlpha">
+          <alpha v-model:value="colors" @change="childChange"></alpha>
         </div>
       </div>
-      <div class="rj-z-sketch-color-wrap">
+      <div class="rj-sketch-color-wrap">
         <div
           :aria-label="`Current color is ${activeColor}`"
-          class="rj-z-sketch-active-color"
+          class="rj-sketch-active-color"
           :style="{ background: activeColor }"
         ></div>
         <checkboard></checkboard>
       </div>
     </div>
-    <div class="rj-z-sketch-field" v-if="!disableFields">
+    <div class="rj-sketch-field" v-if="!disableFields">
       <!-- rgba -->
-      <div class="rj-z-sketch-field--double">
+      <div class="rj-sketch-field--double">
         <ed-in
           label="hex"
           :input-content-style="inputContentStyle"
@@ -36,7 +40,7 @@
           @change="inputChange"
         ></ed-in>
       </div>
-      <div class="rj-z-sketch-field--single">
+      <div class="rj-sketch-field--single">
         <ed-in
           label="r"
           :input-content-style="inputContentStyle"
@@ -45,7 +49,7 @@
           @change="inputChange"
         ></ed-in>
       </div>
-      <div class="rj-z-sketch-field--single">
+      <div class="rj-sketch-field--single">
         <ed-in
           label="g"
           :input-content-style="inputContentStyle"
@@ -54,7 +58,7 @@
           @change="inputChange"
         ></ed-in>
       </div>
-      <div class="rj-z-sketch-field--single">
+      <div class="rj-sketch-field--single">
         <ed-in
           label="b"
           :input-content-style="inputContentStyle"
@@ -63,7 +67,7 @@
           @change="inputChange"
         ></ed-in>
       </div>
-      <div class="rj-z-sketch-field--single" v-if="!disableAlpha">
+      <div class="rj-sketch-field--single" v-if="!disableAlpha">
         <ed-in
           label="a"
           :input-content-style="inputContentStyle"
@@ -75,11 +79,11 @@
         ></ed-in>
       </div>
     </div>
-    <div class="rj-z-sketch-presets">
+    <div class="rj-sketch-presets">
       <template v-for="c in presetColors">
         <div
           v-if="!isTransparent(c)"
-          class="rj-z-sketch-presets-color"
+          class="rj-sketch-presets-color"
           :aria-label="'Color:' + c"
           :key="c"
           :style="{ background: c }"
@@ -87,9 +91,9 @@
         ></div>
         <div
           v-else
-          :key="c"
+          :key="'new_' + c"
           :aria-label="'Color:' + c"
-          class="rj-z-sketch-presets-color"
+          class="rj-sketch-presets-color"
           @click="handlePreset(c)"
         >
           <checkboard />
@@ -97,7 +101,7 @@
       </template>
     </div>
     <slot name="bottom"></slot>
-    <view class="rj-z-sketch-button" v-if="showButton">
+    <view class="rj-sketch-button" v-if="showButton">
       <button class="button-left" @click="cancel">取消</button>
       <button class="button-right" type="primary" @click="confirm">确定</button>
     </view>
@@ -242,7 +246,7 @@ export default {
 </script>
 
 <style>
-.rj-z-sketch {
+.rj-sketch {
   position: relative;
   width: 400rpx;
   padding: 20rpx 20rpx 0;
@@ -251,40 +255,40 @@ export default {
   border-radius: 8rpx;
 }
 
-.rj-z-sketch-saturation-wrap {
+.rj-sketch-saturation-wrap {
   width: 100%;
   padding-bottom: 75%;
   position: relative;
   overflow: hidden;
 }
 
-.rj-z-sketch-controls {
+.rj-sketch-controls {
   display: flex;
 }
 
-.rj-z-sketch-sliders {
+.rj-sketch-sliders {
   padding: 8rpx 0;
   flex: 1;
 }
 
-.rj-z-sketch-sliders .rj-z-hue,
-.rj-z-sketch-sliders .rj-z-alpha-gradient {
+.rj-sketch-sliders .rj-hue,
+.rj-sketch-sliders .rj-alpha-gradient {
   border-radius: 4rpx;
 }
 
-.rj-z-sketch-hue-wrap {
+.rj-sketch-hue-wrap {
   position: relative;
   height: 20rpx;
 }
 
-.rj-z-sketch-alpha-wrap {
+.rj-sketch-alpha-wrap {
   position: relative;
   height: 20rpx;
   margin-top: 8rpx;
   overflow: hidden;
 }
 
-.rj-z-sketch-color-wrap {
+.rj-sketch-color-wrap {
   width: 48rpx;
   height: 48rpx;
   position: relative;
@@ -293,7 +297,7 @@ export default {
   border-radius: 6rpx;
 }
 
-.rj-z-sketch-active-color {
+.rj-sketch-active-color {
   position: absolute;
   top: 0;
   left: 0;
@@ -304,16 +308,16 @@ export default {
   z-index: 2;
 }
 
-.rj-z-sketch-color-wrap .rj-z-checkerboard {
+.rj-sketch-color-wrap .rj-checkerboard {
   background-size: auto;
 }
 
-.rj-z-sketch-field {
+.rj-sketch-field {
   display: flex;
   padding-top: 8rpx;
 }
 
-.rj-z-sketch-field ::v-deep .rj-z-input__input {
+.rj-sketch-field ::v-deep .rj-input__input {
   /* 		width: 90%;
 		padding: 8rpx 0 6rpx 10%;
 		border: none;
@@ -321,7 +325,7 @@ export default {
 		font-size: 20rpx; */
 }
 
-.rj-z-sketch-field ::v-deep .rj-z-input__label {
+.rj-sketch-field ::v-deep .rj-input__label {
   /* 		display: block;
 		text-align: center;
 		font-size: 22rpx;
@@ -331,16 +335,16 @@ export default {
 		text-transform: capitalize; */
 }
 
-.rj-z-sketch-field--single {
+.rj-sketch-field--single {
   flex: 1;
   padding-left: 12rpx;
 }
 
-.rj-z-sketch-field--double {
+.rj-sketch-field--double {
   flex: 2;
 }
 
-.rj-z-sketch-presets {
+.rj-sketch-presets {
   margin-right: -20rpx;
   margin-left: -20rpx;
   padding-left: 20rpx;
@@ -348,7 +352,7 @@ export default {
   border-top: 2rpx solid #eee;
 }
 
-.rj-z-sketch-presets-color {
+.rj-sketch-presets-color {
   border-radius: 6rpx;
   overflow: hidden;
   position: relative;
@@ -361,16 +365,16 @@ export default {
   box-shadow: inset 0 0 0 2rpx rgba(0, 0, 0, 0.15);
 }
 
-.rj-z-sketch-presets-color .rj-z-checkerboard {
+.rj-sketch-presets-color .rj-checkerboard {
   box-shadow: inset 0 0 0 2rpx rgba(0, 0, 0, 0.15);
   border-radius: 6rpx;
 }
 
-.rj-z-sketch__disable-alpha .rj-z-sketch-color-wrap {
+.rj-sketch__disable-alpha .rj-sketch-color-wrap {
   height: 20rpx;
 }
 
-.rj-z-sketch-button {
+.rj-sketch-button {
   display: flex;
   align-items: center;
   justify-content: flex-end;

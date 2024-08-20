@@ -1,8 +1,8 @@
 <template>
-  <div class="rj-z-editable-input">
-    <input class="rj-z-input__input" :style="[inputContentStyle]" v-model="val" @input="update" />
-    <view class="rj-z-input__label" :style="[inputLabelStyle]">{{ labelSpanText }}</view>
-    <view class="rj-z-input__desc" :style="[inputDescStyle]">{{ desc }}</view>
+  <div class="rj-editable-input">
+    <input class="rj-input__input" :style="[inputContentStyle]" v-model="val" @input="update" />
+    <view class="rj-input__label" :style="[inputLabelStyle]">{{ labelSpanText }}</view>
+    <view class="rj-input__desc" :style="[inputDescStyle]">{{ desc }}</view>
   </div>
 </template>
 
@@ -72,18 +72,18 @@ export default {
 </script>
 
 <style>
-.rj-z-editable-input {
+.rj-editable-input {
   position: relative;
 }
 
-.rj-z-input__input {
+.rj-input__input {
   padding: 0;
   border: 0;
   outline: none;
   font-size: 20rpx;
 }
 
-.rj-z-input__label {
+.rj-input__label {
   font-size: 20rpx;
   text-transform: capitalize;
 }

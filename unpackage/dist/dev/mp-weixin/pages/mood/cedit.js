@@ -1,110 +1,51 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const TopNavBack = () => "../../components/common/TopNavBack.js";
+const RjTopNavBack = () => "../../components/rj-navback/RjTopNavBack.js";
+const RjZColorPicker = () => "../../components/rj-color/rj-color-picker/RjColorPicker.js";
+const RjColorPickerSketch = () => "../../components/rj-color/rj-color-picker/RjColorPickerSketch.js";
+const RjEditor = () => "../../components/rj-editor/rj-sp-editor/sp-editor.js";
 const _sfc_main = common_vendor.defineComponent({
-  name: "Login",
-  components: { TopNavBack },
+  name: "Cedit",
+  components: { RjTopNavBack, RjZColorPicker, RjColorPickerSketch, RjEditor },
   setup() {
     function scrollHandle() {
     }
-    let inputFeatureEditor = null;
-    let inputRichCtx = "";
-    common_vendor.onMounted(() => {
-      initEditor();
-    });
-    common_vendor.onBeforeUnmount(() => {
-      if (inputFeatureEditor == null) {
-        return;
-      } else {
-        inputFeatureEditor.blur();
-        setTimeout(() => {
-          inputFeatureEditor.destroy();
-          inputFeatureEditor = null;
-        }, 100);
+    let states = common_vendor.reactive({
+      colors: {
+        hex: "#7ED321"
       }
     });
-    function initEditor() {
-      const instance = common_vendor.getCurrentInstance();
-      const query = common_vendor.index.createSelectorQuery().in(instance.proxy);
-      query.select("#editorTextarea").fields(
-        {
-          id: true,
-          //是否返回节点id
-          rect: false,
-          //是否返回节点布局位置
-          dataset: true,
-          //返回数据集
-          size: true,
-          //返回宽高
-          scrollOffset: true,
-          //返回 scrollLeft,scrollTop
-          properties: ["scrollX", "scrollY"],
-          //监听属性名
-          computedStyle: ["margin", "backgroundColor"]
-          //此处返回指定要返回的样式名
-        },
-        (node) => {
-          inputFeatureEditor = common_vendor.iye({
-            selector: node,
-            config: {
-              placeholder: "Type here...",
-              autoFocus: false,
-              MENU_CONF: {
-                uploadImage: {
-                  fieldName: "your-file-name1",
-                  base64LimitSize: 10 * 1024 * 1024
-                  // 10M 以下插入 base64
-                }
-              },
-              onChange(editor) {
-                inputRichCtx = editor.getHtml();
-              }
-            },
-            html: inputRichCtx
-          });
-        }
-      );
-      query.select("#editorToolbar").fields(
-        {
-          id: true,
-          //是否返回节点id
-          rect: false,
-          //是否返回节点布局位置
-          dataset: true,
-          //返回数据集
-          size: true,
-          //返回宽高
-          scrollOffset: true,
-          //返回 scrollLeft,scrollTop
-          properties: ["scrollX", "scrollY"],
-          //监听属性名
-          computedStyle: ["margin", "backgroundColor"]
-          //此处返回指定要返回的样式名
-        },
-        (node) => {
-          common_vendor.aye({
-            editor: inputFeatureEditor,
-            selector: node,
-            config: {}
-          });
-        }
-      );
-    }
+    common_vendor.onMounted(() => {
+    });
+    common_vendor.onBeforeUnmount(() => {
+      {
+        return;
+      }
+    });
+    const instance = common_vendor.getCurrentInstance();
+    common_vendor.index.createSelectorQuery().in(instance.proxy);
     return {
-      scrollHandle
+      scrollHandle,
+      states
     };
   }
 });
 if (!Array) {
-  const _component_TopNavBack = common_vendor.resolveComponent("TopNavBack");
-  _component_TopNavBack();
+  const _component_RjTopNavBack = common_vendor.resolveComponent("RjTopNavBack");
+  const _component_RjColorPickerSketch = common_vendor.resolveComponent("RjColorPickerSketch");
+  const _component_RjEditor = common_vendor.resolveComponent("RjEditor");
+  (_component_RjTopNavBack + _component_RjColorPickerSketch + _component_RjEditor)();
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_vendor.p({
       isBlueMode: true
     }),
-    b: common_vendor.o((...args) => _ctx.scrollHandle && _ctx.scrollHandle(...args))
+    b: common_vendor.o(($event) => _ctx.states.colors = $event),
+    c: common_vendor.p({
+      value: _ctx.states.colors
+    }),
+    d: common_vendor.o((...args) => _ctx.scrollHandle && _ctx.scrollHandle(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-0b8876e3"]]);
