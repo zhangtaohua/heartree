@@ -2,12 +2,10 @@
   <view class="col_nw_fs_center ce_container">
     <RjTopNavBack :isBlueMode="true"></RjTopNavBack>
     <view class="top_hgap"></view>
-    <scroll-view
+    <view
       class="col_nw_fs_fs ce_wraper red_debug"
       scroll-y="true"
       show-scrollbar="false"
-      enable-flex="true"
-      @scrolltolower="scrollHandle"
     >
       <view class="col_nw_fs_center ce_first red_debug">
         <view class="row_nw_fs_center ce_first_one">
@@ -15,13 +13,13 @@
         </view>
         <view class="row_nw_fs_center ce_first_two">
           <textarea
-            v-model="states.content"
             :maxlength="99999"
             class="ce_first_textarea"
             placeholder-style="color:#F76260"
             placeholder="占位符字体是红色的"
             cursor-color="#F76260"
-            :auto-height="true"
+            auto-height
+            @blur="bindDiaryContentBlur"
           ></textarea>
         </view>
       </view>
@@ -84,20 +82,27 @@
               class="col_nw_fs_center ce_ritual_ibox"
               v-for="(item, index) in rituals"
               :key="item.id"
+              @click="ritualsHandler(item,index)"
             >
               <view class="row_nw_center_center ce_ritual_img">
-                <image mode="aspectFit" :src="item.image"></image>
+                <image class="ce_ritual_show" mode="aspectFit" :src="item.image"></image>
               </view>
               <view class="row_nw_center_center ce_ritual_label">{{ item.label }}</view>
             </view>
           </view>
+          <!-- 这个地方的文字如何才有仪式感，要动画嘛？ -->
           <view class="row_nw_fs_fs ce_ceremony">{{
             rituals[states.ritualIndex].ceremonys[states.cereIndex]
           }}</view>
           <view class="row_nw_fs_fs ce_tips"> {{ rituals[states.ritualIndex].tip }} </view>
         </view>
       </view>
-    </scroll-view>
+
+      <view class="row_nw_center_center ce_act red_debug">
+        <button type="primary"plain @click="">放弃</button>
+        <button type="primary" @click="">仪式开始</button>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -118,8 +123,7 @@ import RjColorPickerSketch from "@/components/rj-color/rj-color-picker/RjColorPi
 // import RjColorPicker from "@/components/rj-color/RjColorPicker.vue";
 // import RjEditor from "@/components/rj-editor/rj-sp-editor/sp-editor.vue";
 
-import dogpng from "@/assets/images/fake/dog.jpg";
-import catpng from "@/assets/images/fake/cat.jpg";
+import { rituals } from "./rituals";
 
 export default defineComponent({
   name: "Cedit",
@@ -129,69 +133,6 @@ export default defineComponent({
     const instance = getCurrentInstance();
     const query = uni.createSelectorQuery().in(instance.proxy);
     // #endif
-
-    let currentPage = 0;
-    function scrollHandle() {
-      currentPage++;
-    }
-
-    const rituals = [
-      {
-        id: "rituals_01",
-        code: "rituals_01",
-        label: "随飞去",
-        hasPrice: true,
-        tip: "随飞去的会再也找不到了",
-        ceremonys: [
-          "神呀！请让我的心情永远随飞去吧吧吧111",
-          "神呀！请让我的心情永远随飞去吧吧吧222",
-          "神呀！请让我的心情永远随飞去吧吧吧333",
-          "神呀！请让我的心情永远随飞去吧吧吧444",
-          "神呀！请让我的心情永远随飞去吧吧吧555",
-          "神呀！请让我的心情永远随飞去吧吧吧666",
-          "神呀！请让我的心情永远随飞去吧吧吧777",
-          "神呀！请让我的心情永远随飞去吧吧吧888",
-          "神呀！请让我的心情永远随飞去吧吧吧999",
-          "神呀！请让我的心情永远随飞去吧吧吧000",
-        ],
-        image: dogpng,
-      },
-      {
-        id: "rituals_02",
-        code: "rituals_02",
-        label: "黑洞里",
-        hasPrice: true,
-        tip: "随飞去的会再也找不到了",
-        ceremony: [
-          "111神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "222神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "333神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "444神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "555神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "666神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "777神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "888神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "999神呀！让这糟糕的心情永远滚进黑洞里吧",
-          "000神呀！让这糟糕的心情永远滚进黑洞里吧",
-        ],
-        image: catpng,
-      },
-      {
-        id: "rituals_03",
-        code: "rituals_03",
-        label: "记下来",
-        hasPrice: false,
-        tip: "记下来随时回味回味",
-        ceremony: [
-          "111神呀！记下来随时回味回味",
-          "222神呀！记下来随时回味回味",
-          "333神呀！记下来随时回味回味",
-          "444神呀！记下来随时回味回味",
-          "555神呀！记下来随时回味回味",
-        ],
-        image: dogpng,
-      },
-    ];
 
     let states = reactive({
       content: "",
@@ -213,6 +154,11 @@ export default defineComponent({
 
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {});
+
+    function bindDiaryContentBlur(e) {
+      console.log(e.detail.value)
+      states.content = e.detail.value;
+    }
 
     // #ifdef MP-WEIXIN || MP-BAIDU || MP-TOUTIAO || APP-PLUS
     let recorderManager = null;
@@ -302,11 +248,21 @@ export default defineComponent({
       console.log("value 发生变化：" + e.detail.value);
     }
 
+    function ritualsHandler(ritual, index) {
+
+      states.ritualIndex = index;
+      let length = rituals[index].ceremonys.length-1;
+      let randIndex = Math.ceil((Math.random()* 100)%length)
+      states.cereIndex = randIndex;
+      console.log("ritualsHandler", ritual, index, length, randIndex)
+    }
+
     return {
       rituals,
-      scrollHandle,
       states,
+      bindDiaryContentBlur,
       sliderChange,
+      ritualsHandler,
     };
   },
 });
@@ -387,33 +343,46 @@ $work_occupied_height: 54rpx + 26rpx + 80rpx + 28rpx + 64rpx;
   width: 218rpx;
   height: auto;
   margin-right: 32rpx;
+  cursor: pointer;
 }
 
 .ce_ritual_img {
   width: 218rpx;
   height: 218rpx;
-  margin-bottom: 16rpx;
+  margin-bottom: 8rpx;
+  border-radius: 50%;
+}
+
+.ce_ritual_show {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
 }
 
 .ce_ritual_label {
   width: 218rpx;
-  height: 48rpx;
-  margin-bottom: 16rpx;
-  font-size: $fs_28rpx;
+  height: 32rpx;
+  font-size: $fs_24rpx;
 }
 
 .ce_ceremony {
   width: 718rpx;
   height: auto;
-  min-height: 80rpx;
-  margin-bottom: 32rpx;
-  font-size: $fs_32rpx;
+  min-height: 32rpx;
+  margin-bottom: 16rpx;
+  font-size: $fs_18rpx;
 }
 
 .ce_tips {
   width: 718rpx;
   height: auto;
-  font-size: $fs_24rpx;
-  margin-bottom: 32rpx;
+  font-size: $fs_10rpx;
+  margin-bottom: 16rpx;
+}
+
+.ce_act {
+  width: 718rpx;
+  height: 48rpx;
+  margin-bottom: 64rpx;
 }
 </style>

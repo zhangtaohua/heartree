@@ -23,27 +23,101 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.ce_one_box_one.data-v-0b8876e3 {
+/* 颜色 */
+/* 文字大小 */
+.ce_container.data-v-0b8876e3 {
   width: 750rpx;
-  height: 500vh;
+  height: 100vh;
 }
 .top_hgap.data-v-0b8876e3 {
   width: 750rpx;
   height: 26rpx;
 }
-.ce_one_box_two.data-v-0b8876e3 {
+.ce_wraper.data-v-0b8876e3 {
   width: 750rpx;
   height: calc(100% - 252rpx - var(--status-bar-height));
   margin-top: 32rpx;
   margin-bottom: 32rpx;
   z-index: 2;
 }
-.ce_one_box_three.data-v-0b8876e3 {
+.ce_first.data-v-0b8876e3 {
   width: 100%;
   height: auto;
+  margin-bottom: 64rpx;
 }
-.ce_one_box_four.data-v-0b8876e3 {
-  position: relative;
+.ce_first_one.data-v-0b8876e3 {
+  width: 718rpx;
+  height: 64rpx;
+}
+.ce_first_label.data-v-0b8876e3 {
   width: 100%;
-  height: 400px;
+  height: 100%;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.ce_first_two.data-v-0b8876e3 {
+  width: 718rpx;
+  height: auto;
+  min-height: 320rpx;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 8rpx;
+}
+.ce_first_textarea.data-v-0b8876e3 {
+  width: 100%;
+  height: auto;
+  min-height: 320rpx;
+  font-size: 28rpx;
+}
+.ce_first_four.data-v-0b8876e3 {
+  width: 718rpx;
+  height: 80rpx;
+}
+.ce_first_five.data-v-0b8876e3 {
+  width: 718rpx;
+  height: auto;
+}
+.ce_rituals.data-v-0b8876e3 {
+  width: 100%;
+  height: auto;
+  margin-bottom: 32rpx;
+}
+.ce_ritual_ibox.data-v-0b8876e3 {
+  width: 218rpx;
+  height: auto;
+  margin-right: 32rpx;
+  cursor: pointer;
+}
+.ce_ritual_img.data-v-0b8876e3 {
+  width: 218rpx;
+  height: 218rpx;
+  margin-bottom: 8rpx;
+  border-radius: 50%;
+}
+.ce_ritual_show.data-v-0b8876e3 {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+}
+.ce_ritual_label.data-v-0b8876e3 {
+  width: 218rpx;
+  height: 32rpx;
+  font-size: 24rpx;
+}
+.ce_ceremony.data-v-0b8876e3 {
+  width: 718rpx;
+  height: auto;
+  min-height: 32rpx;
+  margin-bottom: 16rpx;
+  font-size: 18rpx;
+}
+.ce_tips.data-v-0b8876e3 {
+  width: 718rpx;
+  height: auto;
+  font-size: 10rpx;
+  margin-bottom: 16rpx;
+}
+.ce_act.data-v-0b8876e3 {
+  width: 718rpx;
+  height: 48rpx;
+  margin-bottom: 64rpx;
 }

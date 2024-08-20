@@ -24,8 +24,6 @@
 /* 透明度 */
 /* 文章场景相关 */
 /*每个页面公共css */
-/* 颜色 */
-/* 文字大小 */
 .row_nw_fs_fs {
   display: flex;
   flex-direction: row;

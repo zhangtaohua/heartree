@@ -1,52 +1,44 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="row_nw_center_center st_content">
+		<image class="st_bg" src="@/assets/images/fake/tree.webp"></image>
+		<view class="col_nw_fs_center st_text">
+			<text class="row_nw_center_center title_wel">欢迎来到</text>
+			<text class="row_nw_center_center title_name">心情日记</text>
 		</view>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				title: 'Hello'
-			}
-		},
-		onLoad() {
-
-		},
-		methods: {
-
-		}
-	}
+<script setup>
+	
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+<style scoped lang="scss">
+	.st_content {
+    position: relative;
+    width: 750rpx;
+    height: 100vh;
 	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
+	.st_bg {
+    position: absolute;
+    width: 750rpx;
+    height: auto;
+    z-index: 0;
 	}
 
-	.text-area {
-		display: flex;
-		justify-content: center;
+	.title_wel {
+    width: 720rpx;
+    height: 60rpx;
+    font-size: 60rpx;
+    font-weight: bold;
+    margin-top: 250rpx;
 	}
 
 	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+    width: 720rpx;
+    height: 60rpx;
+    font-size: 60rpx;
+    font-weight: bold;
+    margin-top: 250rpx;
 	}
 </style>
