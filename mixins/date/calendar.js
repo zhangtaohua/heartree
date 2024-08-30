@@ -2,22 +2,22 @@ import { reactive } from "vue";
 
 const leapYearMonth = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const normalYearMonth = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const dateHeader = ["日", "一", "二", "三", "四", "五", "六"];
+export const dateHeader = ["日", "一", "二", "三", "四", "五", "六"];
 
-function isEarly(date1, date2) {
+export function isEarly(date1, date2) {
   const dateFirst = new Date(date1);
   const dateSecond = new Date(date2);
   return dateFirst > dateSecond;
 }
 
-function isLeapYear(year) {
+export function isLeapYear(year) {
   if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
     return true;
   }
   return false;
 }
 
-function getDateFormat(dateNow) {
+export function getDateFormat(dateNow) {
   let date = dateNow.getDate();
   // const day = dateNow.getDay()
   let month = dateNow.getMonth() + 1;
@@ -29,7 +29,7 @@ function getDateFormat(dateNow) {
   return `${year}-${month}-${date}`;
 }
 
-function getDate(dateStr = "") {
+export function getDateFormatStr(dateStr = "") {
   let dateNow = null;
   if (dateStr === "") {
     dateNow = new Date();
@@ -46,11 +46,13 @@ export function useCalendar() {
     isEndLimit: false,
     startLimitDate: null,
     endLimitDate: null,
+    dateShowArray: [],
   });
 
   function setLimitdate(startTime, endTime) {
     if (startTime) {
       calendarData.isStartLimit = true;
+      calendarData.startLimitDate = startTime;
     } else {
       calendarData.isStartLimit = false;
       calendarData.startLimitDate = null;
@@ -58,13 +60,14 @@ export function useCalendar() {
 
     if (endTime) {
       calendarData.isEndLimit = true;
+      calendarData.endLimitDate = endTime;
     } else {
       calendarData.isEndLimit = false;
       calendarData.endLimitDate = null;
     }
   }
 
-  function getDateShowArray(dateStr = "") {
+  function getDateShowArray(dateStr = "", initObj = {}) {
     let dateNow = null;
     if (dateStr === "") {
       dateNow = new Date();
@@ -97,25 +100,25 @@ export function useCalendar() {
     let lastDaysOfMonth = 0;
     let nextDaysOfMonth = 0;
 
-    let isLeap = this.isLeapYear(year);
+    let isLeap = isLeapYear(year);
     if (isLeap) {
-      daysOfMonth = this.leapYearMonth[month];
+      daysOfMonth = leapYearMonth[month];
     } else {
-      daysOfMonth = this.normalYearMonth[month];
+      daysOfMonth = normalYearMonth[month];
     }
 
-    isLeap = this.isLeapYear(lastYear);
+    isLeap = isLeapYear(lastYear);
     if (isLeap) {
-      lastDaysOfMonth = this.leapYearMonth[lastMonth];
+      lastDaysOfMonth = leapYearMonth[lastMonth];
     } else {
-      lastDaysOfMonth = this.normalYearMonth[lastMonth];
+      lastDaysOfMonth = normalYearMonth[lastMonth];
     }
 
-    isLeap = this.isLeapYear(nextYear);
+    isLeap = isLeapYear(nextYear);
     if (isLeap) {
-      nextDaysOfMonth = this.leapYearMonth[nextMonth];
+      nextDaysOfMonth = leapYearMonth[nextMonth];
     } else {
-      nextDaysOfMonth = this.normalYearMonth[nextMonth];
+      nextDaysOfMonth = normalYearMonth[nextMonth];
     }
 
     const monthstr = month > 9 ? month : "0" + month;
@@ -131,9 +134,12 @@ export function useCalendar() {
     for (let i = beforeInsertDays - 1; i >= 0; i--) {
       let tempDay = lastDaysOfMonth - i;
       tempDay = tempDay > 9 ? tempDay : "0" + tempDay;
+      const fullDate = `${lastYear}-${lastMonth}-${tempDay}`;
+      const initTemp = initObj[fullDate];
       const tempDate = {
+        ...initTemp,
         date: tempDay,
-        fullDate: `${lastYear}-${lastMonth}-${tempDay}`,
+        fullDate: fullDate,
         isLight: false,
         isLast: 1,
       };
@@ -145,21 +151,26 @@ export function useCalendar() {
       let tempDay = i;
       tempDay = tempDay > 9 ? tempDay : "0" + tempDay;
       let tempDate = null;
+      const fullDate = `${year}-${month}-${tempDay}`;
+      const initTemp = initObj[fullDate];
       if (
-        parseInt(year) === this.startLimitDate.year &&
-        parseInt(month) === this.startLimitDate.month &&
-        i < this.startLimitDate.date
+        calendarData.startLimitDate &&
+        parseInt(year) === calendarData.startLimitDate.year &&
+        parseInt(month) === calendarData.startLimitDate.month &&
+        i < calendarData.startLimitDate.date
       ) {
         tempDate = {
+          ...initTemp,
           date: tempDay,
-          fullDate: `${year}-${month}-${tempDay}`,
+          fullDate: fullDate,
           isLight: false,
           isLast: 2,
         };
       } else {
         tempDate = {
+          ...initTemp,
           date: tempDay,
-          fullDate: `${year}-${month}-${tempDay}`,
+          fullDate: fullDate,
           isLight: true,
           isLast: 2,
         };
@@ -172,20 +183,29 @@ export function useCalendar() {
     for (let i = 1; i <= afterInsertDays; i++) {
       let tempDay = i;
       tempDay = tempDay > 9 ? tempDay : "0" + tempDay;
+      const fullDate = `${nextYear}-${nextMonth}-${tempDay}`;
+      const initTemp = initObj[fullDate];
       const tempDate = {
+        ...initTemp,
         date: tempDay,
-        fullDate: `${nextYear}-${nextMonth}-${tempDay}`,
+        fullDate: fullDate,
         isLight: false,
         isLast: 3,
       };
       tempDateArray.push(tempDate);
     }
 
-    this.dateShowArrar = [];
+    const dateShowArray = [];
     for (let i = 0; i < tempDateArray.length; i = i + 7) {
-      this.dateShowArrar.push(tempDateArray.slice(i, i + 7));
+      dateShowArray.push(tempDateArray.slice(i, i + 7));
     }
+
+    calendarData.dateShowArray = dateShowArray;
   }
 
-  return {};
+  return {
+    calendarData,
+    setLimitdate,
+    getDateShowArray,
+  };
 }

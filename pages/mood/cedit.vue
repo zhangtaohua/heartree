@@ -2,11 +2,11 @@
   <view class="col_nw_fs_center ce_container">
     <RjTopNavBack :isBlueMode="true"></RjTopNavBack>
     <view class="top_hgap"></view>
-    <view
-      class="col_nw_fs_fs ce_wraper red_debug"
-      scroll-y="true"
-      show-scrollbar="false"
-    >
+    <view class="col_nw_fs_fs ce_wraper red_debug" scroll-y="true" show-scrollbar="false">
+      <view class="ce_first">
+        <CalendarMonth> </CalendarMonth>
+      </view>
+
       <view class="col_nw_fs_center ce_first red_debug">
         <view class="row_nw_fs_center ce_first_one">
           <text class="row_nw_fs_center ce_first_label">记一记</text>
@@ -82,7 +82,7 @@
               class="col_nw_fs_center ce_ritual_ibox"
               v-for="(item, index) in rituals"
               :key="item.id"
-              @click="ritualsHandler(item,index)"
+              @click="ritualsHandler(item, index)"
             >
               <view class="row_nw_center_center ce_ritual_img">
                 <image class="ce_ritual_show" mode="aspectFit" :src="item.image"></image>
@@ -99,7 +99,7 @@
       </view>
 
       <view class="row_nw_center_center ce_act red_debug">
-        <button type="primary"plain @click="">放弃</button>
+        <button type="primary" plain @click="">放弃</button>
         <button type="primary" @click="">仪式开始</button>
       </view>
     </view>
@@ -123,11 +123,13 @@ import RjColorPickerSketch from "@/components/rj-color/rj-color-picker/RjColorPi
 // import RjColorPicker from "@/components/rj-color/RjColorPicker.vue";
 // import RjEditor from "@/components/rj-editor/rj-sp-editor/sp-editor.vue";
 
+import CalendarMonth from "./components/CalendarMonth.vue";
+
 import { rituals } from "./rituals";
 
 export default defineComponent({
   name: "Cedit",
-  components: { RjTopNavBack, RjZColorPicker, RjColorPickerSketch },
+  components: { RjTopNavBack, RjZColorPicker, RjColorPickerSketch, CalendarMonth },
   setup() {
     // #ifdef MP-WEIXIN || H5 || APP-PLUS
     const instance = getCurrentInstance();
@@ -156,7 +158,7 @@ export default defineComponent({
     onBeforeUnmount(() => {});
 
     function bindDiaryContentBlur(e) {
-      console.log(e.detail.value)
+      console.log(e.detail.value);
       states.content = e.detail.value;
     }
 
@@ -249,12 +251,11 @@ export default defineComponent({
     }
 
     function ritualsHandler(ritual, index) {
-
       states.ritualIndex = index;
-      let length = rituals[index].ceremonys.length-1;
-      let randIndex = Math.ceil((Math.random()* 100)%length)
+      let length = rituals[index].ceremonys.length - 1;
+      let randIndex = Math.ceil((Math.random() * 100) % length);
       states.cereIndex = randIndex;
-      console.log("ritualsHandler", ritual, index, length, randIndex)
+      console.log("ritualsHandler", ritual, index, length, randIndex);
     }
 
     return {

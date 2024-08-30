@@ -28,6 +28,11 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
+"@dcloudio/types@^2.0.16":
+  version "2.6.12"
+  resolved "https://registry.npmmirror.com/@dcloudio/types/-/types-2.6.12.tgz#6c9559b9e65483f355dd61cb88fe8c14c8e61189"
+  integrity sha512-mrCMwcINy1IFjU9VUqLeWBkj404yWs5paLDttBcA+eqUjanuUQbBcTVPqlrGgkyzLXDcV2oDDZRSNxNpXi4kMQ==
+
 "@dcloudio/uni-ui@^1.5.6":
   version "1.5.6"
   resolved "https://registry.npmmirror.com/@dcloudio/uni-ui/-/uni-ui-1.5.6.tgz#f2f0c10ec7fa2432e694c2c716e00a384e45555b"
@@ -162,6 +167,13 @@ lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.npmmirror.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
+luch-request@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npmmirror.com/luch-request/-/luch-request-3.1.1.tgz#a62b0aab54c5acd9da5b5fd0564ed2cdb8af9c2f"
+  integrity sha512-p7+mlcEtgRcd0OfXC4XZbyiwSr1XgCeqNT7LlVUjnk7InYl/8d5Rk7BUqAYNA2WRafI1wRIUQWRWZRpeUwWR0w==
+  dependencies:
+    "@dcloudio/types" "^2.0.16"
 
 magic-string@^0.30.10:
   version "0.30.11"
