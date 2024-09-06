@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "uni-app",
-  "usingComponents": {
-    "rj-top-nav-back": "../../components/rj-navback/RjTopNavBack",
-    "rj-color-picker-sketch": "../../components/rj-color/rj-color-picker/RjColorPickerSketch"
-  }
-}

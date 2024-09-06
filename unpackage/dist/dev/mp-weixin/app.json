@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/mood/cedit",
+    "pages/home/home",
     "pages/start/index"
   ],
   "window": {

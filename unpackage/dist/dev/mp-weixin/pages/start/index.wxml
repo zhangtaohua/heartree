@@ -1,1 +1,1 @@
-<view class="content"><image class="logo" src="{{a}}"></image><view class="text-area"><text class="title">{{b}}</text></view></view>
+<view class="row_nw_center_center st_content data-v-255b53b3"><image class="st_bg data-v-255b53b3" src="{{a}}"></image><view class="col_nw_fs_center st_text data-v-255b53b3"><text class="row_nw_center_center title_wel data-v-255b53b3">欢迎来到</text><text class="row_nw_center_center title_name data-v-255b53b3">心情日记</text></view></view>

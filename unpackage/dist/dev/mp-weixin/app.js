@@ -2,7 +2,7 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 if (!Math) {
-  "./pages/mood/cedit.js";
+  "./pages/home/home.js";
   "./pages/start/index.js";
 }
 const _sfc_main = {
@@ -18,8 +18,11 @@ const _sfc_main = {
 };
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
+  app.use(common_vendor.createPinia());
   return {
-    app
+    app,
+    Pinia: common_vendor.Pinia
+    // 此处必须将 Pinia 返回
   };
 }
 createApp().app.mount("#app");

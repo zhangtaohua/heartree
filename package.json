@@ -17,6 +17,7 @@
     "luch-request": "^3.1.1",
     "mp-html": "^2.5.0",
     "quill": "^2.0.2",
+    "three-platformize": "^1.133.3",
     "vue": "^3.4.37"
   },
   "devDependencies": {

@@ -43,6 +43,11 @@
   resolved "https://registry.npmmirror.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.0.tgz#3188bcb273a414b0d215fd22a58540b989b9409a"
   integrity sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==
 
+"@types/three@^0.133.0":
+  version "0.133.1"
+  resolved "https://registry.npmmirror.com/@types/three/-/three-0.133.1.tgz#6007faaf7f6b53339150a2a1fe57121e4c6607c1"
+  integrity sha512-XqBrP/+kbs+o0CYRhCVVE95v7FaL2bO5Z7+3VQJE0nEyjo+9LoLfeNgZITOnndKHxM+7ltEciAIR7uE0SZlsOg==
+
 "@vue/compiler-core@3.4.37":
   version "3.4.37"
   resolved "https://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.4.37.tgz#55db3900e09424c65c39111a05a3c6e698f371e3"
@@ -234,6 +239,13 @@ source-map-js@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
   integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
+
+three-platformize@^1.133.3:
+  version "1.133.3"
+  resolved "https://registry.npmmirror.com/three-platformize/-/three-platformize-1.133.3.tgz#a6de3c432898d633bc038975b78078811fa5fa80"
+  integrity sha512-fb7lxtMU/ZSX+JZBrpZVJhK0yYc+ozcLAqEhqXXngrZWrSYUHyOeMpS9vfkmFVr+Jx2nzvvGxrf0OcGzY8Y4vA==
+  dependencies:
+    "@types/three" "^0.133.0"
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
